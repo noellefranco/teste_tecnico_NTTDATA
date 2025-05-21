@@ -1,7 +1,12 @@
+import express from "express";
 import playlistRoutes from "./playlist.routes.js";
 import songRoutes from "./song.routes.js";
 
 export default function routes(app) {
-  app.use("/playlists", playlistRoutes);
-  app.use("/songs", songRoutes);
+  const router = express.Router();
+
+  router.use("/playlists", playlistRoutes);
+  router.use("/songs", songRoutes);
+
+  app.use(router);
 }

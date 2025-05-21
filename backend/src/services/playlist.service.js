@@ -9,11 +9,22 @@ export const getPlaylistById = (id) =>
     include: { songs: true },
   });
 
-export const createPlaylist = (name) =>
-  prisma.playlist.create({ data: { name } });
+export const createPlaylist = (name) => {
+  if (!name || name.trim() === "") {
+    throw new Error("Nome inválido para playlist");
+  }
+  return prisma.playlist.create({ data: { name: name.trim() } });
+};
 
-export const updatePlaylist = (id, name) =>
-  prisma.playlist.update({ where: { id: Number(id) }, data: { name } });
+export const updatePlaylist = (id, name) => {
+  if (!name || name.trim() === "") {
+    throw new Error("Nome inválido para playlist");
+  }
+  return prisma.playlist.update({
+    where: { id: Number(id) },
+    data: { name: name.trim() },
+  });
+};
 
 export const deletePlaylist = (id) =>
   prisma.playlist.delete({ where: { id: Number(id) } });
