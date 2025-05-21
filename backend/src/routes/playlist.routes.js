@@ -16,23 +16,43 @@ router.get("/", async (_, res) => {
 
 router.get("/:id", async (req, res) => {
   const playlist = await getPlaylistById(req.params.id);
-  playlist
-    ? res.json(playlist)
-    : res.status(404).json({ error: "Playlist não encontrada." });
+  if (!playlist) {
+    return res.status(404).json({ error: "Playlist não encontrada" });
+  }
+  res.json(playlist);
 });
 
 router.post("/", async (req, res) => {
   const { name } = req.body;
-  const playlist = await createPlaylist(name);
-  res.status(201).json(playlist);
+  if (!name || name.trim() === "") {
+    return res.status(400).json({ error: "Nome da playlist é obrigatório" });
+  }
+
+  try {
+    const playlist = await createPlaylist(name.trim());
+    res.status(201).json(playlist);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Erro ao criar a playlist" });
+  }
 });
 
 router.put("/:id", async (req, res) => {
+  const { name } = req.body;
+  if (!name || name.trim() === "") {
+    return res.status(400).json({ error: "Nome da playlist é obrigatório" });
+  }
+
   try {
-    const updated = await updatePlaylist(req.params.id, req.body.name);
+    const updated = await updatePlaylist(req.params.id, name.trim());
     res.json(updated);
-  } catch {
-    res.status(404).json({ error: "Erro ao atualizar a playlist." });
+  } catch (error) {
+    // Tratamento de erro do Prisma quando id não existe
+    if (error.code === "P2025") {
+      return res.status(404).json({ error: "Playlist não encontrada" });
+    }
+    console.error(error);
+    res.status(500).json({ error: "Erro ao atualizar a playlist" });
   }
 });
 
@@ -40,8 +60,12 @@ router.delete("/:id", async (req, res) => {
   try {
     await deletePlaylist(req.params.id);
     res.status(204).end();
-  } catch {
-    res.status(404).json({ error: "Erro ao deletar a playlist." });
+  } catch (error) {
+    if (error.code === "P2025") {
+      return res.status(404).json({ error: "Playlist não encontrada" });
+    }
+    console.error(error);
+    res.status(500).json({ error: "Erro ao deletar a playlist" });
   }
 });
 
