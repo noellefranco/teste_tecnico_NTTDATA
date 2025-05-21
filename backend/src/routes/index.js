@@ -1,3 +1,5 @@
+import playlistRoutes from "./playlist.routes.js";
+
 export default function routes(app) {
-  // futuras rotas...
+  app.use("/playlists", playlistRoutes);
 }
