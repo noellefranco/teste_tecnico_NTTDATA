@@ -1,16 +1,11 @@
 # Node modules
 node_modules/
 
-# Prisma
-.prisma/
 .env
-
-# migrations/
 
 # Testes
 coverage/
 *.log
-jest.config.js
 
 # Sistema operacional
 .DS_Store

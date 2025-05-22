@@ -1,0 +1,111 @@
+.music-list-container {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.music-list-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #333;
+  text-align: center;
+}
+
+.music-list-container ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.add-song-link {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #4caf50;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.add-song-link:hover {
+  background-color: #43a047;
+}
+
+.song-item {
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.song-title {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.song-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.song-actions a,
+.song-actions button {
+  padding: 0.4rem 0.7rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
+
+.song-actions a {
+  background-color: #646cff;
+}
+
+.song-actions a:hover {
+  background-color: #535bf2;
+}
+
+.song-actions button {
+  background-color: #e53935;
+}
+
+.song-actions button:hover {
+  background-color: #d32f2f;
+}
+
+.lyrics-container {
+  margin-top: 0.5rem;
+}
+
+.lyrics-button {
+  padding: 0.3rem 0.6rem;
+  background-color: #222;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.lyrics-button:disabled {
+  background-color: #999;
+}
+
+.lyrics-box {
+  white-space: pre-wrap;
+  background-color: #eee;
+  padding: 0.8rem;
+  margin-top: 0.5rem;
+  border-radius: 6px;
+  max-height: 200px;
+  overflow-y: auto;
+  font-size: 0.85rem;
+}
