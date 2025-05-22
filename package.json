@@ -1,0 +1,24 @@
+{
+  "name": "teste_tecnico_nttdata",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "cd backend && npm test && cd ../frontend && npm test",
+    "start": "concurrently \"npm --prefix backend run dev\" \"npm --prefix frontend run dev\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noellefranco/teste_tecnico_NTTDATA.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/noellefranco/teste_tecnico_NTTDATA/issues"
+  },
+  "homepage": "https://github.com/noellefranco/teste_tecnico_NTTDATA#readme",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
