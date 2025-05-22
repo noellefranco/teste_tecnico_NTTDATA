@@ -1,0 +1,38 @@
+header {
+  padding: 1rem 2rem;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  margin: 0 0 0.5rem 0;
+  font-weight: 600;
+  color: #111;
+}
+
+nav {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+nav a {
+  color: #0070f3;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #005bb5;
+}
+
+hr {
+  width: 100%;
+  border: none;
+  border-top: 1px solid #ddd;
+  margin-top: 1rem;
+}

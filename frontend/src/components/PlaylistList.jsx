@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { getPlaylists, deletePlaylist } from "../services/playlistService";
+import "../style/PlaylistList.css";
 
 export default function PlaylistList() {
   const [playlists, setPlaylists] = useState([]);
@@ -25,9 +26,8 @@ export default function PlaylistList() {
   }, []);
 
   async function handleDelete(id) {
-    if (!window.confirm("Tem certeza que deseja excluir esta playlist?")) {
+    if (!window.confirm("Tem certeza que deseja excluir esta playlist?"))
       return;
-    }
     try {
       await deletePlaylist(id);
       setPlaylists((prev) => prev.filter((playlist) => playlist.id !== id));
@@ -41,22 +41,26 @@ export default function PlaylistList() {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
-      <h2>Playlists</h2>
-      <ul>
+    <div className="playlist-list-container">
+      <h2>Suas Playlists</h2>
+      <ul className="playlist-list">
         {playlists.map((playlist) => (
           <li key={playlist.id}>
-            {playlist.name}{" "}
-            <button onClick={() => navigate(`/playlists/${playlist.id}/edit`)}>
-              Editar
-            </button>{" "}
-            <Link to={`/playlists/${playlist.id}/musics`}>🎵 Músicas</Link>
-            <button
-              onClick={() => handleDelete(playlist.id)}
-              style={{ color: "red" }}
-            >
-              Excluir
-            </button>
+            <span>{playlist.name}</span>
+            <div className="playlist-actions">
+              <button
+                onClick={() => navigate(`/playlists/${playlist.id}/edit`)}
+              >
+                Editar
+              </button>
+              <Link to={`/playlists/${playlist.id}/musics`}>🎵</Link>
+              <button
+                className="delete-button"
+                onClick={() => handleDelete(playlist.id)}
+              >
+                Excluir
+              </button>
+            </div>
           </li>
         ))}
       </ul>

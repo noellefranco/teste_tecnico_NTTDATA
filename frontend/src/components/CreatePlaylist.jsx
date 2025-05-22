@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { createPlaylist } from "../services/playlistService";
+import "../style/CreatePlaylist.css";
 
 export default function CreatePlaylist() {
   const [name, setName] = useState("");
@@ -25,9 +26,9 @@ export default function CreatePlaylist() {
   };
 
   return (
-    <div>
+    <div className="create-playlist-container">
       <h2>Nova Playlist</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="create-playlist-form" onSubmit={handleSubmit}>
         <label>
           Nome:
           <input
@@ -41,7 +42,7 @@ export default function CreatePlaylist() {
         </label>
         <button type="submit">Salvar</button>
       </form>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="error-message">{error}</p>}
     </div>
   );
 }

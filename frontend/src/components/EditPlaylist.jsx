@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getPlaylistById, updatePlaylist } from "../services/playlistService";
+import "../style/EditPlaylist.css";
 
 export default function EditPlaylist() {
   const { id } = useParams();
@@ -44,26 +45,23 @@ export default function EditPlaylist() {
   };
 
   if (loading) return <p>Carregando...</p>;
-  if (error) return <p style={{ color: "red" }}>{error}</p>;
+  if (error) return <p className="error-message">{error}</p>;
 
   return (
-    <div>
+    <div className="edit-playlist-container">
       <h2>Editar Playlist</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Nome:
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => {
-              setName(e.target.value);
-              setError(null);
-            }}
-          />
-        </label>
+      <form className="edit-playlist-form" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => {
+            setName(e.target.value);
+            setError(null);
+          }}
+        />
         <button type="submit">Atualizar</button>
       </form>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="error-message">{error}</p>}
     </div>
   );
 }

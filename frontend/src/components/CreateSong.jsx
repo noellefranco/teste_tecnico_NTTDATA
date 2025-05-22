@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { createSong } from "../services/songService";
+import "../style/CreateSong.css";
 
 export default function CreateSong() {
   const { playlistId } = useParams();
@@ -11,12 +12,6 @@ export default function CreateSong() {
   const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
-    console.log({
-      title,
-      artist,
-      duration,
-      playlistId: Number(playlistId),
-    });
     e.preventDefault();
     try {
       await createSong({
@@ -33,10 +28,10 @@ export default function CreateSong() {
   };
 
   return (
-    <div>
+    <div className="create-song-container">
       <h2>Adicionar Música</h2>
-      {error && <p>{error}</p>}
-      <form onSubmit={handleSubmit}>
+      {error && <p className="error-message">{error}</p>}
+      <form className="create-song-form" onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Título"

@@ -1,7 +1,7 @@
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getSongById, updateSong } from "../services/songService";
+import "../style/EditSong.css";
 
 export default function EditMusic() {
   const { playlistId, musicId } = useParams();
@@ -42,9 +42,9 @@ export default function EditMusic() {
   };
 
   return (
-    <div>
+    <div className="edit-music-container">
       <h2>Editar Música</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="edit-music-form" onSubmit={handleSubmit}>
         <input
           type="text"
           placeholder="Título da música"
