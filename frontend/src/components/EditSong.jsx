@@ -1,3 +1,4 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getSongById, updateSong } from "../services/songService";
@@ -5,6 +6,8 @@ import { getSongById, updateSong } from "../services/songService";
 export default function EditMusic() {
   const { playlistId, musicId } = useParams();
   const [title, setTitle] = useState("");
+  const [artist, setArtist] = useState("");
+  const [duration, setDuration] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -12,6 +15,8 @@ export default function EditMusic() {
       try {
         const response = await getSongById(musicId);
         setTitle(response.data.title);
+        setArtist(response.data.artist);
+        setDuration(response.data.duration);
       } catch (err) {
         console.error(err);
         alert("Erro ao carregar música");
@@ -23,7 +28,12 @@ export default function EditMusic() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await updateSong(musicId, { title, playlistId: Number(playlistId) });
+      await updateSong(musicId, {
+        title,
+        artist,
+        duration,
+        playlistId: Number(playlistId),
+      });
       navigate(`/playlists/${playlistId}/musics`);
     } catch (err) {
       console.error(err);
@@ -40,6 +50,20 @@ export default function EditMusic() {
           placeholder="Título da música"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Artista"
+          value={artist}
+          onChange={(e) => setArtist(e.target.value)}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Duração"
+          value={duration}
+          onChange={(e) => setDuration(e.target.value)}
           required
         />
         <button type="submit">Salvar</button>
