@@ -63,10 +63,10 @@ teste_tecnico_nttdata/
 ```
 
 ## 🧪 Funcionalidades principais
-- Criar playlists
-- Listar playlists
-- Editar playlists
-- Deletar playlists
+- Criar playlists e músicas dentro de cada playlist
+- Listar playlists e suas músicas
+- Editar playlists e suas músicas
+- Deletar playlists e suas músicas
 - Integração com banco de dados PostgreSQL
 - Comunicação entre frontend e backend via API REST (Axios)
 - Interface simples construída com React + Vite
